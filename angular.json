@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "829bfe65-d4cf-4d3f-9d40-339962dbec80"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,6 +34,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles.scss",
               "src/styles.less"
             ],
             "scripts": []
@@ -62,17 +66,30 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "tsankao-admin:build"
+            "browserTarget": "tsankao-admin:build",
+            "proxyConfig": "proxy.config.js"
           },
           "configurations": {
             "production": {
               "browserTarget": "tsankao-admin:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "tsankao-admin:build:hmr"
             }
           }
         },
@@ -94,6 +111,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles.scss",
               "src/styles.less"
             ],
             "scripts": []
